@@ -1,0 +1,19 @@
+git klonen: git clone https://github.com/tihuep/younique_betriebspraktikum.git
+
+npm installieren
+json-server installieren: npm install -g json-server (https://www.npmjs.com/package/json-server)
+json-server starten:  json-server --watch db.json -p 4000 
+
+webapp starten: npm start
+
+
+
+
+Tasks:
+
+Neue Users mittels POST-Request auf Server speichern
+Edit-Menu mit bestehendem Form
+Änderungen mittels PUT/PATCH-Request auf Server speichern
+Styling
+Attribut ergänzen
+Dashboard/Routing nach Belieben anpassen

@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "scarry",
+      "forename": "Scarlett",
+      "surname": "Johansson",
+      "birthdate": null
+    },
+    {
+      "id": 2,
+      "username": "theRock",
+      "forename": "Dwayne",
+      "surname": "Johnson",
+      "birthdate": null
+    },
+    {
+      "id": 3,
+      "username": "ueli",
+      "forename": "Ueli",
+      "surname": "Maurer",
+      "birthdate": null
+    },
+    {
+      "id": 4,
+      "username": "tihuep",
+      "forename": "Timon",
+      "surname": "Hueppiasdf",
+      "birthdate": null
+    }
+  ]
+}
