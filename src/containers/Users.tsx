@@ -30,11 +30,52 @@ function Users() {
         fetch('http://localhost:4000/users/' + userId, {
             method: 'DELETE'
         }).then(() => {loadUsers()});
-        //setUsers(users.filter(user => user.id !== userId));
     }
 
     const submitPress = (user: User) => {
-        setUsers([...users, user]);
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        
+        fetch('http://localhost:4000/users', {
+            method: 'POST',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default',
+            body: JSON.stringify({
+                'id': user.id,
+                'username': user.username,
+                'forename': user.forename,
+                'surname': user.surname,
+                'birthdate': user.birthdate
+            })
+        }).then(() => {loadUsers()});
+
+        navigate('/users');
+    }
+
+    const editPress = (userId: number): void => {
+        navigate('/users/edit/' + userId);
+    }
+
+    const submitEdit = (user: User): void => {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        console.log(JSON.stringify(user));
+        fetch('http://localhost:4000/users/' + user.id, {
+            method: 'PUT',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default',
+            body: JSON.stringify({
+                'id': user.id,
+                'username': user.username,
+                'forename': user.forename,
+                'surname': user.surname,
+                'birthdate': user.birthdate
+            })
+        }).then(() => {loadUsers(); navigate('/users');});
+
         navigate('/users');
     }
 
@@ -42,10 +83,13 @@ function Users() {
         <Routes>
             <Route path="" element={<>
                 <NavLink to="new">Create New</NavLink>
-                <UserIndex users={users} deletePress={deleteUser} />
+                <UserIndex users={users} deletePress={deleteUser} editPress={editPress} />
             </>} />
             <Route path="new" element={<>
                 <UserForm mode={1} submitPress={submitPress}/>
+            </>} />
+            <Route path="edit/:userId" element={<>
+                <UserForm mode={2} submitEdit={submitEdit}/>
             </>} />
         </Routes>);
 }

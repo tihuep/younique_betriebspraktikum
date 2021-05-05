@@ -4,10 +4,11 @@ import styled from '@emotion/styled';
 
 type UserIndexProps = {
     users?: User[],
-    deletePress: (userId: number) => void
+    deletePress: (userId: number) => void,
+    editPress: (userId: number) => void
 }
 
-function UserIndex({users, deletePress}: UserIndexProps) {
+function UserIndex({users, deletePress, editPress}: UserIndexProps) {
     return <div>
         {!users && <span>Keine Benutzer vorhanden</span>}
         {users && 
@@ -29,9 +30,10 @@ function UserIndex({users, deletePress}: UserIndexProps) {
                             <td>{user.username ? user.username.toString() : ''}</td>
                             <td>{user.forename ? user.forename.toString() : ''}</td>
                             <td>{user.surname ? user.surname.toString() : ''}</td>
-                            <td>{user.birthdate ? user.birthdate.toDateString() : ''}</td>
+                            <td>{user.birthdate ? new Date(Date.parse(user.birthdate.toString())).toDateString() : ''}</td>
                             <td>
                                 <button onClick={() => {deletePress(user.id)}}>Delete</button>
+                                <button onClick={() => {editPress(user.id)}}>Edit</button>
                             </td>
                         </tr>
                     )}
